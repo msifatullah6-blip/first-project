@@ -11,7 +11,7 @@ class PasienBase(BaseModel):
     no_hp: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class CreatePasien(PasienBase):
     pass
@@ -20,7 +20,7 @@ class ResponePasien(PasienBase):
     id_pasien: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 # Dokter
 class DokterBase(BaseModel):
@@ -28,7 +28,7 @@ class DokterBase(BaseModel):
     id_poli: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class CreateDokter(DokterBase):
     pass
@@ -37,14 +37,14 @@ class ResponeDokter(DokterBase):
     id_dokter: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 # Poli
 class PoliBase(BaseModel):
     nama_poli: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class CreatePoli(PoliBase):
     pass
@@ -53,7 +53,7 @@ class ResponePoli(PoliBase):
     id_poli: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 #Kunjung
 class KunjungBase(BaseModel):
@@ -62,7 +62,7 @@ class KunjungBase(BaseModel):
     id_dokter: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class CreateKunjung(KunjungBase):
     pass
@@ -71,4 +71,25 @@ class ResponeKunjung(KunjungBase):
     id_kunjung: str
 
     class Config:
-        orm_mode = True
+        from_attributes = True
+
+# User
+
+class CreateUser(BaseModel):
+    username: str
+    password: str
+
+class ResponeUser(CreateUser):
+    id_user: str
+
+    class Config:
+        from_attributes = True
+
+# Token
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    username: str | None = None

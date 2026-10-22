@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 import models
 from db import engine
-from routers import pasien, poli, dokter, kunjung
+from routers import pasien, poli, dokter, kunjung, auth
 
 app = FastAPI()
 
@@ -10,6 +10,7 @@ app.include_router(pasien.router)
 app.include_router(poli.router)
 app.include_router(dokter.router)
 app.include_router(kunjung.router)
+app.include_router(auth.router)
 
 @app.get('/')
 def root():

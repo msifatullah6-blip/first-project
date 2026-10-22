@@ -1,5 +1,5 @@
 from db import base
-from sqlalchemy import Column, String, Date, TIMESTAMP, text, ForeignKey
+from sqlalchemy import Column, String, Date, TIMESTAMP, text, ForeignKey, Boolean
 
 class Pasien(base):
     __tablename__ = 'pasien'
@@ -36,3 +36,11 @@ class Kunjung(base):
     id_pasien = Column(String, ForeignKey('pasien.id_pasien'), nullable=False)
     id_dokter = Column(String, ForeignKey('dokter.id_dokter'), nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), server_default=text('now()'))
+
+class User(base):
+    __tablename__ = 'users'
+
+    id_user = Column(String, primary_key=True, nullable=False, index=True, server_default=text('uuidv4()'))
+    username = Column(String, nullable=False, index=True, unique=True)
+    hashed_password = Column(String, nullable=False)
+    is_active = Column(Boolean, default=True)
