@@ -79,8 +79,9 @@ class CreateUser(BaseModel):
     username: str
     password: str
 
-class ResponeUser(CreateUser):
+class ResponeUser(BaseModel):
     id_user: str
+    username: str
 
     class Config:
         from_attributes = True
