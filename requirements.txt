@@ -4,3 +4,4 @@ pydantic
 pwdlib
 pyjwt
 dotenv
+psycopg[binary]
