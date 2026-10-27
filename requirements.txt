@@ -5,3 +5,4 @@ pwdlib[argon2]
 pyjwt
 dotenv
 psycopg[binary]
+python-multipart
