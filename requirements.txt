@@ -3,3 +3,4 @@ sqlalchemy
 pydantic
 pwdlib
 pyjwt
+dotenv
