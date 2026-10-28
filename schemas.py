@@ -60,6 +60,8 @@ class KunjungBase(BaseModel):
     tgl_kunjung: date
     id_pasien: str
     id_dokter: str
+    no_antre: str
+    status: str
 
     class Config:
         from_attributes = True

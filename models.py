@@ -35,6 +35,8 @@ class Kunjung(base):
     tgl_kunjung = Column(Date, nullable=False)
     id_pasien = Column(String, ForeignKey('pasien.id_pasien'), nullable=False)
     id_dokter = Column(String, ForeignKey('dokter.id_dokter'), nullable=False)
+    no_antre = Column(String)
+    status = Column(String)
     created_at = Column(TIMESTAMP(timezone=True), server_default=text('now()'))
 
 class User(base):
