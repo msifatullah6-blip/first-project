@@ -6,7 +6,7 @@ import os
 
 load_dotenv()
 
-db_url = os.getenv('POSTGRES_URL')
+db_url = os.environ.get('POSTGRES_URL')
 engine = create_engine(db_url)
 
 session = sessionmaker(autoflush=False, autocommit=False, bind=engine)
