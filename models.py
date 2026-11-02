@@ -31,7 +31,7 @@ class Dokter(base):
 class Kunjung(base):
     __tablename__ = 'kunjungan'
 
-    id_kunjung = Column(String, primary_key=True, nullable=False, index=True, server_default=text('uuidv4()'))
+    id_kunjung = Column(String, primary_key=True, nullable=False, index=True, server_default=text('gen_random_uuid()'))
     tgl_kunjung = Column(Date, nullable=False)
     id_pasien = Column(String, ForeignKey('pasien.id_pasien'), nullable=False)
     id_dokter = Column(String, ForeignKey('dokter.id_dokter'), nullable=False)
