@@ -6,10 +6,10 @@ import os
 
 load_dotenv()
 
-db_url = os.environ.get('POSTGRES_URL')
+db_url = os.environ.get('DB_URL')
 if db_url and db_url.startswith('postgres://'):
     db_url = db_url.replace('postgres://', 'postgresql://', 1)
-    
+
 engine = create_engine(db_url)
 
 session = sessionmaker(autoflush=False, autocommit=False, bind=engine)
