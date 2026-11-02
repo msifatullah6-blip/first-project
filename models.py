@@ -4,7 +4,7 @@ from sqlalchemy import Column, String, Date, TIMESTAMP, text, ForeignKey, Boolea
 class Pasien(base):
     __tablename__ = 'pasien'
 
-    id_pasien = Column(String, primary_key=True, nullable=False, index=True, server_default=text('uuidv4()'))
+    id_pasien = Column(String, primary_key=True, nullable=False, index=True, server_default=text('gen_random_uuid()'))
     nik = Column(String, nullable=False)
     nama_pasien = Column(String, nullable=False)
     tgl_lahir = Column(Date, nullable=False)
@@ -16,14 +16,14 @@ class Pasien(base):
 class Poli(base):
     __tablename__ = 'poli'
 
-    id_poli = Column(String, primary_key=True, nullable=False, index=True, server_default=text('uuidv4()'))
+    id_poli = Column(String, primary_key=True, nullable=False, index=True, server_default=text('gen_random_uuid()'))
     nama_poli = Column(String, nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), server_default=text('now()'))
 
 class Dokter(base):
     __tablename__ = 'dokter'
 
-    id_dokter = Column(String, primary_key=True, nullable=False, index=True, server_default=text('uuidv4()'))
+    id_dokter = Column(String, primary_key=True, nullable=False, index=True, server_default=text('gen_random_uuid()'))
     nama_dokter = Column(String, nullable=False)
     id_poli = Column(String, ForeignKey('poli.id_poli'), nullable=False)
     created_at = Column(TIMESTAMP(timezone=True), server_default=text('now()'))
@@ -42,7 +42,7 @@ class Kunjung(base):
 class User(base):
     __tablename__ = 'users'
 
-    id_user = Column(String, primary_key=True, nullable=False, index=True, server_default=text('uuidv4()'))
+    id_user = Column(String, primary_key=True, nullable=False, index=True, server_default=text('gen_random_uuid()'))
     username = Column(String, nullable=False, index=True, unique=True)
     hashed_password = Column(String, nullable=False)
     is_active = Column(Boolean, default=True)
