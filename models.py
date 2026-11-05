@@ -52,7 +52,7 @@ class Periksa(base):
     __tablename__ = 'periksa'
 
     id_periksa = Column(String, primary_key=True, nullable=False, index=True, server_default=text('gen_random_uuid()'))
-    id_kunjung = Column(String, ForeignKey('kunjung.id_kunjung'), nullable=False)
+    id_kunjung = Column(String, ForeignKey('kunjungan.id_kunjung'), nullable=False)
     tinggi_badam = Column(SmallInteger)
     berat_badan = Column(SmallInteger)
     suhu = Column(SmallInteger)
