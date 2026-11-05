@@ -96,3 +96,66 @@ class Token(BaseModel):
 
 class TokenData(BaseModel):
     username: str | None = None
+
+# Periksa
+
+class PeriksaBase(BaseModel):
+    id_kunjung: str
+    tinggi_badan: int
+    berat_badan: int
+    tekanan_darah: str
+    suhu: int
+    keluhan: str
+    diagnosa: str
+    terapi: str
+
+    class Config:
+        from_attributes = True
+
+class CreatePeriksa(PeriksaBase):
+    pass
+
+class ResponePeriksa(PeriksaBase):
+    id_periksa: str
+
+    class Config:
+        from_attributes = True
+
+# Obat
+
+class ObatBase(BaseModel):
+    nama_obat: str
+    harga_obat: int
+
+    class Config:
+        from_attributes = True
+
+class CreateObat(ObatBase):
+    pass
+
+class ResponeObat(ObatBase):
+    id_obat: str
+
+    class Config:
+        from_attributes = True
+
+# Resep
+
+class ResepBase(BaseModel):
+    id_periksa: str
+    id_obat: str
+    jumlah_obat: int
+    aturan_pakai: str
+    harga_total: int
+
+    class Config:
+        from_attributes = True
+
+class CreateResep(ResepBase):
+    pass
+
+class ResponeResep(ResepBase):
+    id_resep: str
+
+    class Config:
+        from_attributes = True

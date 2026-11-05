@@ -1,5 +1,5 @@
 from db import base
-from sqlalchemy import Column, String, Date, TIMESTAMP, text, ForeignKey, Boolean
+from sqlalchemy import Column, String, Date, TIMESTAMP, text, ForeignKey, Boolean, SmallInteger, Integer
 
 class Pasien(base):
     __tablename__ = 'pasien'
@@ -46,3 +46,37 @@ class User(base):
     username = Column(String, nullable=False, index=True, unique=True)
     hashed_password = Column(String, nullable=False)
     is_active = Column(Boolean, default=True)
+    created_at = Column(TIMESTAMP(timezone=True), server_default=text('now()'))
+
+class Periksa(base):
+    __tablename__ = 'periksa'
+
+    id_periksa = Column(String, primary_key=True, nullable=False, index=True, server_default=text('gen_random_uuid()'))
+    id_kunjung = Column(String, ForeignKey('kunjung.id_kunjung'), nullable=False)
+    tinggi_badam = Column(SmallInteger)
+    berat_badan = Column(SmallInteger)
+    suhu = Column(SmallInteger)
+    tekanan_darah = Column(String)
+    keluhan = Column(String)
+    diagnosa = Column(String)
+    terapi = Column(String)
+    created_at = Column(TIMESTAMP(timezone=True), server_default=text('now()'))
+
+class Obat(base):
+    __tablename__ = 'obat'
+
+    id_obat = Column(String, primary_key=True, nullable=False, index=True, server_default=text('gen_random_uuid()'))
+    nama_obat = Column(String, index=True)
+    harga_obat = Column(Integer)
+    created_at = Column(TIMESTAMP(timezone=True), server_default=text('now()'))
+
+class Resep(base):
+    __tablename__ = 'resep'
+
+    id_resep = Column(String, primary_key=True, nullable=False, index=True, server_default=text('gen_random_uuid()'))
+    id_periksa = Column(String, ForeignKey('periksa.id_periksa'))
+    id_obat = Column(String, ForeignKey('obat.id_obat'))
+    jumlah_obat = Column(SmallInteger)
+    aturan_pakai = Column(String)
+    total_harga = Column(Integer)
+    created_at = Column(TIMESTAMP(timezone=True), server_default=text('now()'))
